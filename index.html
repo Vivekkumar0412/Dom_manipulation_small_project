@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -18,4 +18,130 @@
     <script src="index.js"></script>
     
   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHECK</title>
+  <style>
+    table{
+      border: 2px solid black;
+      position: relative;
+      left: 32%;
+    }table th {
+      border: 1px solid red;
+      background-color: cyan;
+      color: black;
+      padding: 20px 40px;
+    }table td{
+      background-color: orange;
+      border: 1px solid black;
+      padding: 20px 40px;
+    }.change_all{
+      background-color: greenyellow;
+      color: lightsalmon;
+      border: 2px solid black;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="show_file"></div>
+  <button id="show">SHOW</button>
+  <button id="hide">HIDE</button>
+  <button id="change">CHANGE STYLE</button>
+  <div id="show1"></div>
+  <button id="show_again">SHOW AGAIN</button>
+  <button id="sort_by_value">sort_by_value</button>
+
+  <script>
+          let person = [
+        { name: "Liril", quantity: 10, sales: 7, price: 10 },
+        { name: "Dove", quantity: 20, sales: 9, price: 20 },
+        { name: "Pears", quantity: 35, sales: 20, price: 15 },
+        { name: "Surf", quantity: 45, sales: 22, price: 55 },
+        { name: "Ariel", quantity: 20, sales: 7, price: 40 },
+        { name: "Tide", quantity: 20, sales: 11, price: 35 },
+        { name: "Nirma", quantity: 30, sales: 21, price: 20 },
+      ];
+
+      let table_headding = `<tr><th>Name</th> <th>Stock</th> <th>Sales</th> <th>Price</th> </tr>`;
+      let table_data = person.map((elem)=>{
+        let str = "";
+        str+= `<tr> <td>${elem.name}</td> <td>${elem.quantity}</td> <td>${elem.sales}</td> <td>${elem.price}</td></tr>`;
+        return str;
+      });
+
+      let final_table = `<table>${table_headding} ${table_data}</table>`;
+      let show = document.getElementById("show");
+      show.addEventListener("click",()=>{
+        let di = document.getElementById("show_file");
+        di.innerHTML = final_table;
+      });
+
+      let hide = document.getElementById("hide");
+      hide.addEventListener("click",()=>{
+        let di = document.getElementById("show_file");
+        di.innerHTML = "";
+      });
+
+
+      let change = document.getElementById("change");
+      change.addEventListener("click",()=>{
+        let d = document.getElementById("show_file");
+        d.setAttribute("class","change_all");
+      })
+
+      let show_again = document.getElementById("show_again");
+      show_again.addEventListener("dblclick",()=>{
+        let heading = `<tr> <th>NAME</th> <th>STOCK</th> <th>SALES</th> <th>PRICE</th> <th>VALUE</th></tr>`;
+        let table_data = person.map((elem)=>{
+          let str = "";
+          str+= `<tr> <td>${elem.name}</td> <td>${elem.quantity}</td> <td>${elem.sales}</td> <td>${elem.price}</td> <td>${elem.price * elem.quantity}</td> </tr>`;
+          return str;
+        });
+
+        let final_data = `<table>${heading} ${table_data.join("")}</table>`;
+        let show1 = document.getElementById("show1");
+        console.log(final_data);
+        show1.innerHTML = final_data;
+
+      });
+
+      let sort_by_value = document.getElementById("sort_by_value");
+      sort_by_value.addEventListener("click",()=>{
+        let val_arr = person.map((elem)=>{
+           let jso = {name : elem.name, stock : elem.quantity, price : elem.price, sales : elem.sales, value : elem.price * elem.quantity};
+          return jso;
+        });
+        val_arr.sort((a,b)=>{
+          if(a.value < b.value){
+            return -1;
+          }else if(a.value > b.value){
+            return 1;
+          }else{
+            return 0;
+          }
+        });
+
+        let heading = `<tr> <th>NAME</th>  <th>STOCK</th> <th>PRICE</th> <th>SALES</th> <th>VALUE</th> </tr>`;
+        let table_Data = val_arr.map((elem)=>{
+          let str = "";
+          str+= `<tr> <td>${elem.name}</td> <td>${elem.stock}</td> <td>${elem.price}</td> <td>${elem.sales}</td> <td>${elem.value}</td></tr>`;
+          return str;
+        });
+
+        let final_list = `<table>${heading} ${table_Data}</table>`;
+        let show1 = document.getElementById("show1");
+        show1.innerHTML = final_list;
+
+        console.log(val_arr);
+      })
+
+  </script>
+</body>
 </html>
