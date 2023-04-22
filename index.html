@@ -71,8 +71,8 @@
 
       let table_headding = `<tr><th>Name</th> <th>Stock</th> <th>Sales</th> <th>Price</th> </tr>`;
       let table_data = person.map((elem)=>{
-        let str = "";
-        str+= `<tr> <td>${elem.name}</td> <td>${elem.quantity}</td> <td>${elem.sales}</td> <td>${elem.price}</td></tr>`;
+        // let str = "";
+        let str = `<tr> <td>${elem.name}</td> <td>${elem.quantity}</td> <td>${elem.sales}</td> <td>${elem.price}</td></tr>`;
         return str;
       });
 
@@ -100,8 +100,8 @@
       show_again.addEventListener("dblclick",()=>{
         let heading = `<tr> <th>NAME</th> <th>STOCK</th> <th>SALES</th> <th>PRICE</th> <th>VALUE</th></tr>`;
         let table_data = person.map((elem)=>{
-          let str = "";
-          str+= `<tr> <td>${elem.name}</td> <td>${elem.quantity}</td> <td>${elem.sales}</td> <td>${elem.price}</td> <td>${elem.price * elem.quantity}</td> </tr>`;
+          // let str = "";
+          let str = `<tr> <td>${elem.name}</td> <td>${elem.quantity}</td> <td>${elem.sales}</td> <td>${elem.price}</td> <td>${elem.price * elem.quantity}</td> </tr>`;
           return str;
         });
 
@@ -130,8 +130,8 @@
 
         let heading = `<tr> <th>NAME</th>  <th>STOCK</th> <th>PRICE</th> <th>SALES</th> <th>VALUE</th> </tr>`;
         let table_Data = val_arr.map((elem)=>{
-          let str = "";
-          str+= `<tr> <td>${elem.name}</td> <td>${elem.stock}</td> <td>${elem.price}</td> <td>${elem.sales}</td> <td>${elem.value}</td></tr>`;
+          // let str = "";
+          let str = `<tr> <td>${elem.name}</td> <td>${elem.stock}</td> <td>${elem.price}</td> <td>${elem.sales}</td> <td>${elem.value}</td></tr>`;
           return str;
         });
 
