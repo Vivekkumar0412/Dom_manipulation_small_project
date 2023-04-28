@@ -57,6 +57,8 @@
   <div id="show1"></div>
   <button id="show_again">SHOW AGAIN</button>
   <button id="sort_by_value">sort_by_value</button>
+  <div><span id="maxi"></span></div>
+  <button id="maximum_value">MAXIMUM VALUE</button>
 
   <script>
           let person = [
@@ -72,7 +74,7 @@
         { name: "Liril", quantity: 10, sales: 7, price: 10 },
         { name: "Dove", quantity: 20, sales: 9, price: 20 },
         { name: "Pears", quantity: 35, sales: 20, price: 15 },
-        { name: "Surf", quantity: 45, sales: 22, price: 55 },
+        { name: "Surf", quantity: 45, sales: 22, price: 5 },
         { name: "Ariel", quantity: 20, sales: 7, price: 40 },
         { name: "Tide", quantity: 20, sales: 11, price: 35 },
         { name: "Nirma", quantity: 30, sales: 21, price: 20 },
@@ -150,6 +152,29 @@
 
         console.log(val_arr);
       })
+      
+      let maxi = document.getElementById("maxi");
+      let maximum_value = document.getElementById("maximum_value");
+      maximum_value.addEventListener("click",()=>{
+        let val = products.map((elem)=>{
+          let json = {name : elem.name, price : elem.price, sales : elem.sales, value : elem.price * elem.quantity};
+          return json;
+        });
+
+        let final_val = val.reduce((a,c)=>{
+          let a_val = a.value;
+          let c_val = c.value;
+          if(a_val > c_val){
+            return a;
+          }else{
+            return c;
+          }
+        });
+
+
+        let final_str = `The product is ${final_val.name} its price is ${final_val.price} and its value is ${final_val.value}`;
+        maxi.innerHTML = final_str;
+      });
 
   </script>
 </body>
